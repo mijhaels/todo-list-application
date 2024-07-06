@@ -1,13 +1,13 @@
 package py.com.lincoln.todo_list_application.dtos;
 
-import py.com.lincoln.todo_list_application.models.Tarea;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import py.com.lincoln.todo_list_application.models.Usuario;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * DTO for {@link Usuario}
  */
-public record UsuarioDto(String nombreUsuario, List<Tarea> tareas) implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record UsuarioDto(String nombreUsuario, String nombre, String apellido) implements Serializable {
 }
