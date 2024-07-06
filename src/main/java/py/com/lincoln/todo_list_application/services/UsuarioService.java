@@ -2,6 +2,7 @@ package py.com.lincoln.todo_list_application.services;
 
 import org.springframework.stereotype.Service;
 import py.com.lincoln.todo_list_application.dtos.UsuarioDto;
+import py.com.lincoln.todo_list_application.dtos.UsuarioInputDto;
 import py.com.lincoln.todo_list_application.mappers.Mapper;
 import py.com.lincoln.todo_list_application.models.Usuario;
 import py.com.lincoln.todo_list_application.repositories.UsuarioRepository;
@@ -20,15 +21,17 @@ public class UsuarioService {
         this.mapper = mapper;
     }
 
-    public Usuario guardarUsuario(Usuario usuario) {
+    public Usuario crearUsuario(UsuarioInputDto input) {
+        Usuario usuario = new Usuario();
+        usuario.setNombreUsuario(input.getNombreUsuario());
+        usuario.setPassword(input.getPassword());
+        usuario.setRol(input.getRol());
+        usuario.setNombre(input.getNombre());
+        usuario.setApellido(input.getApellido());
         return usuarioRepository.save(usuario);
     }
 
     public List<UsuarioDto> obtenerUsuarios() {
         return usuarioRepository.findAll().stream().map(mapper::toDto).toList();
-    }
-
-    public Usuario obtenerUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
     }
 }
