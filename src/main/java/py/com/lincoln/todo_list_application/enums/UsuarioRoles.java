@@ -1,5 +1,8 @@
 package py.com.lincoln.todo_list_application.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum UsuarioRoles {
     ADMIN("admin"),
     USUARIO("usuario");
@@ -8,9 +11,5 @@ public enum UsuarioRoles {
 
     UsuarioRoles(String rol) {
         this.rol = rol;
-    }
-
-    public String getRol() {
-        return rol;
     }
 }
