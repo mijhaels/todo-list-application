@@ -1,5 +1,7 @@
 package py.com.lincoln.todo_list_application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +14,7 @@ public class Tarea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @JsonIgnore
     private Long id;
 
     @Column(name = "titulo", nullable = false)
@@ -25,6 +28,7 @@ public class Tarea {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonManagedReference
     private Usuario usuario;
 
 }

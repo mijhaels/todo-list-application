@@ -1,7 +1,12 @@
 package py.com.lincoln.todo_list_application.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 import py.com.lincoln.todo_list_application.enums.UsuarioRoles;
@@ -12,18 +17,23 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @JsonIgnore
     private Long id;
 
     @Column(name = "nombre_usuario", nullable = false, unique = true)
     private String nombreUsuario;
 
     @Column(name = "password", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "rol", nullable = false)
@@ -37,6 +47,7 @@ public class Usuario {
     private String apellido;
 
     @OneToMany(mappedBy = "usuario", orphanRemoval = true)
+    @JsonBackReference
     private List<Tarea> tareas = new ArrayList<>();
 
     @Override
