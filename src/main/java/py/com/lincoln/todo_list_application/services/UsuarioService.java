@@ -36,8 +36,9 @@ public class UsuarioService {
         return usuarioRepository.findAll().stream().map(mapper::toDto).toList();
     }
 
-    public Usuario login(UsuarioLoginDto login) {
-        return usuarioRepository.findByNombreUsuarioAndPassword(login.getNombreUsuario(), login.getPassword());
+    public String login(UsuarioLoginDto login) {
+        usuarioRepository.findByNombreUsuarioAndPassword(login.getNombreUsuario(), login.getPassword()).orElseThrow(() -> new IllegalArgumentException("Credenciales inválidas"));
+        return "Usuario logueado con éxito";
     }
 
 }

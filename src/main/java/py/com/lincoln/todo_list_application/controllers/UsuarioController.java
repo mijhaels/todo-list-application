@@ -35,7 +35,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuario/login")
-    public ResponseEntity<GenericResponse<Usuario>> login(@RequestBody @Valid UsuarioLoginDto login) {
+    public ResponseEntity<GenericResponse<String>> login(@RequestBody @Valid UsuarioLoginDto login) {
         return ResponseEntity.ok(GenericResponse.success(usuarioService.login(login)));
     }
 
