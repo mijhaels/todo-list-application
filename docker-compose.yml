@@ -1,0 +1,25 @@
+services:
+  todo-list-application:
+    container_name: todo-list-application
+    image: todo-list-application
+    depends_on:
+      - db-todo-list-application
+    ports:
+      - "8080:8080"
+    env_file:
+      - prod.env
+
+  db-todo-list-application:
+    container_name: db-todo-list-application
+    image: postgres:latest
+    env_file:
+      - prod.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./psql:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500m"
+        max-file: "2"

@@ -10,9 +10,9 @@
     </parent>
     <groupId>py.com.lincoln</groupId>
     <artifactId>todo-list-application</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>MAIN</version>
     <name>todo-list-application</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Proyecto To Do List</description>
     <url/>
     <licenses>
         <license/>
