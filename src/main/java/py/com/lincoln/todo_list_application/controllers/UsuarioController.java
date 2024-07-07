@@ -2,10 +2,7 @@ package py.com.lincoln.todo_list_application.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import py.com.lincoln.todo_list_application.dtos.GenericResponse;
 import py.com.lincoln.todo_list_application.dtos.UsuarioDto;
 import py.com.lincoln.todo_list_application.dtos.UsuarioInputDto;
@@ -16,6 +13,7 @@ import py.com.lincoln.todo_list_application.services.UsuarioService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

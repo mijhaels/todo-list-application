@@ -13,6 +13,7 @@ import py.com.lincoln.todo_list_application.services.TareaService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class TareaController {
 
     private final TareaService tareaService;
