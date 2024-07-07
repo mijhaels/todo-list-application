@@ -3,6 +3,7 @@ package py.com.lincoln.todo_list_application.services;
 import org.springframework.stereotype.Service;
 import py.com.lincoln.todo_list_application.dtos.UsuarioDto;
 import py.com.lincoln.todo_list_application.dtos.UsuarioInputDto;
+import py.com.lincoln.todo_list_application.dtos.UsuarioLoginDto;
 import py.com.lincoln.todo_list_application.mappers.Mapper;
 import py.com.lincoln.todo_list_application.models.Usuario;
 import py.com.lincoln.todo_list_application.repositories.UsuarioRepository;
@@ -34,4 +35,9 @@ public class UsuarioService {
     public List<UsuarioDto> obtenerUsuarios() {
         return usuarioRepository.findAll().stream().map(mapper::toDto).toList();
     }
+
+    public Usuario login(UsuarioLoginDto login) {
+        return usuarioRepository.findByNombreUsuarioAndPassword(login.getNombreUsuario(), login.getPassword());
+    }
+
 }

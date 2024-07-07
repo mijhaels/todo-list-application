@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import py.com.lincoln.todo_list_application.dtos.GenericResponse;
 import py.com.lincoln.todo_list_application.dtos.UsuarioDto;
 import py.com.lincoln.todo_list_application.dtos.UsuarioInputDto;
+import py.com.lincoln.todo_list_application.dtos.UsuarioLoginDto;
 import py.com.lincoln.todo_list_application.models.Usuario;
 import py.com.lincoln.todo_list_application.services.UsuarioService;
 
@@ -23,13 +25,18 @@ public class UsuarioController {
     }
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<UsuarioDto>> obtenerUsuarios() {
-        return ResponseEntity.ok(usuarioService.obtenerUsuarios());
+    public ResponseEntity<GenericResponse<List<UsuarioDto>>> obtenerUsuarios() {
+        return ResponseEntity.ok(GenericResponse.success(usuarioService.obtenerUsuarios()));
     }
 
     @PostMapping("/usuario")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody @Valid UsuarioInputDto usuario) {
-        return ResponseEntity.ok(usuarioService.crearUsuario(usuario));
+    public ResponseEntity<GenericResponse<Usuario>> crearUsuario(@RequestBody @Valid UsuarioInputDto usuario) {
+        return ResponseEntity.ok(GenericResponse.success(usuarioService.crearUsuario(usuario)));
+    }
+
+    @PostMapping("/usuario/login")
+    public ResponseEntity<GenericResponse<Usuario>> login(@RequestBody @Valid UsuarioLoginDto login) {
+        return ResponseEntity.ok(GenericResponse.success(usuarioService.login(login)));
     }
 
 }

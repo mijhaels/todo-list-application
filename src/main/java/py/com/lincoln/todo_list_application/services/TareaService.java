@@ -28,7 +28,7 @@ public class TareaService {
     }
 
     public Tarea crearTarea(TareaInputDto input) {
-        Usuario usuario = usuarioRepository.findById(input.getUsuarioId()).orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+        Usuario usuario = usuarioRepository.findById(input.getUsuarioId()).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
         Tarea tarea = new Tarea();
         tarea.setTitulo(input.getTitulo());
         tarea.setDescripcion(input.getDescripcion());
@@ -42,8 +42,8 @@ public class TareaService {
     }
 
     public Tarea actualizarTarea(Long idTarea, TareaEditDto input) {
-        Usuario usuario = usuarioRepository.findById(input.getUsuarioId()).orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
-        Tarea tarea = tareaRepository.findById(idTarea).orElseThrow(() -> new RuntimeException("Tarea no encontrada."));
+        Usuario usuario = usuarioRepository.findById(input.getUsuarioId()).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        Tarea tarea = tareaRepository.findById(idTarea).orElseThrow(() -> new IllegalArgumentException("Tarea no encontrada"));
         tarea.setTitulo(input.getTitulo());
         tarea.setDescripcion(input.getDescripcion());
         tarea.setCompletado(input.getCompletado());
@@ -52,7 +52,7 @@ public class TareaService {
     }
 
     public String eliminarTarea(Long id) {
-        tareaRepository.findById(id).orElseThrow(() -> new RuntimeException("Tarea no encontrada."));
+        tareaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Tarea no encontrada"));
         tareaRepository.deleteById(id);
         return "Tarea eliminada con éxito.";
     }
